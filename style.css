@@ -1,0 +1,297 @@
+/* ---------------------------------------------------------------
+   Sean Golder — personal site
+   Single stylesheet. Edit colours and spacing here; everything
+   on the site reads from these values.
+   --------------------------------------------------------------- */
+
+:root {
+  --bg:        #fbfaf7;
+  --surface:   #f3f1ec;
+  --text:      #22262b;
+  --muted:     #5e6670;
+  --rule:      #ddd9d1;
+  --accent:    #2f5d62;
+  --accent-sw: #3c7a80;
+  --maxw:      46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:      #16181b;
+    --surface: #1e2125;
+    --text:    #e6e4df;
+    --muted:   #a2a8b0;
+    --rule:    #33373d;
+    --accent:  #8fc4c6;
+    --accent-sw:#a9d6d8;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:      #16181b;
+  --surface: #1e2125;
+  --text:    #e6e4df;
+  --muted:   #a2a8b0;
+  --rule:    #33373d;
+  --accent:  #8fc4c6;
+  --accent-sw:#a9d6d8;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+               Georgia, "Times New Roman", serif;
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- layout ---------- */
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+main { padding-bottom: 4rem; }
+
+/* ---------- masthead + navigation ---------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.75rem;
+}
+
+.masthead .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.1rem;
+}
+
+.sitename {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--text);
+  white-space: nowrap;
+}
+.sitename:hover { color: var(--accent); }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.35rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+
+/* ---------- headings and text ---------- */
+
+h1 {
+  font-size: 2.05rem;
+  line-height: 1.2;
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.75rem 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--rule);
+  letter-spacing: -0.005em;
+}
+
+h3 { font-size: 1.07rem; margin: 1.75rem 0 0.3rem; }
+
+p { margin: 0 0 1.15rem; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent-sw); }
+
+.lede { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.75rem; }
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+}
+
+/* ---------- intro block with portrait ---------- */
+
+.intro {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2.25rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  display: block;
+}
+
+@media (max-width: 36rem) {
+  .intro { grid-template-columns: 1fr; gap: 1.5rem; }
+  .portrait { max-width: 180px; }
+  h1 { font-size: 1.75rem; }
+}
+
+/* ---------- link buttons ---------- */
+
+.linkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linkrow a {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.linkrow a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- publication entries ---------- */
+
+.entry {
+  margin: 0 0 1.9rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--rule);
+}
+.entry:hover { border-left-color: var(--accent); }
+
+.entry .title {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.entry .meta {
+  color: var(--muted);
+  font-size: 0.93rem;
+  margin: 0 0 0.5rem;
+}
+
+.entry .abstract { margin: 0.5rem 0 0.6rem; }
+
+/* A short editorial note under an abstract — set smaller and quieter so it
+   reads as a remark rather than as part of the abstract itself. */
+.entry .note {
+  font-size: 0.93rem;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+
+.entry .links a { font-size: 0.9rem; margin-right: 1rem; }
+
+.status {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.1rem 0.45rem;
+  vertical-align: 0.1rem;
+}
+
+/* ---------- simple lists ---------- */
+
+ul.plain { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+ul.plain li {
+  padding: 0.45rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+ul.plain li:last-child { border-bottom: 0; }
+ul.plain .when { color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- figure ---------- */
+
+figure { margin: 1.75rem 0; max-width: 560px; }
+figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+  display: block;
+}
+/* Add class="narrow" to hold a figure to a smaller width — for a tall
+   portrait photo that would otherwise dominate, or an image whose file is
+   too small to be stretched without blurring. */
+figure.narrow { max-width: 384px; }
+
+/* Two photos side by side, scaled so that they end at the same height. Each
+   figure grows in proportion to its aspect ratio (width divided by height),
+   which is given as --ar on the figure in the HTML. On a narrow screen they
+   stack instead. */
+.photo-pair {
+  display: flex;
+  gap: 1rem;
+  margin: 1.75rem 0;
+  align-items: flex-start;
+}
+.photo-pair figure {
+  flex-grow: var(--ar, 1);
+  flex-shrink: 1;
+  flex-basis: 0;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+}
+@media (max-width: 36rem) {
+  .photo-pair { flex-direction: column; }
+  .photo-pair figure { flex-grow: 1; }
+}
+figcaption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.6rem;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  padding: 1.5rem 0 2.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); }
+footer p { margin: 0 0 0.4rem; }
